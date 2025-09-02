@@ -1,15 +1,12 @@
-/* ===== Project 5 - main.js =====
-   Minimal client for Giphy Search API with:
-   - Form handling
-   - Loading + error states
-   - Results grid rendering
-   - "Load more" pagination
-   - Simple API key helper via localStorage
-================================= */
+/* ===== Project 5 - main.js (public demo) =====
+   - Embeds API key via DEFAULT_API_KEY so GitHub Pages works for everyone
+   - You can still override via DevTools: setApiKey('...')
+   - Shows loading + errors, renders grid, supports "Load more"
+============================================== */
 
 /* ========== CONFIG ========== */
-// Put your key here temporarily OR call setApiKey('YOUR_KEY') in the console once.
-const DEFAULT_API_KEY = ''; // safer to keep this empty and set via setApiKey()
+// ⚠️ Replace with your real GIPHY key for public demo:
+const DEFAULT_API_KEY = 'YOUR_GIPHY_API_KEY_HERE';
 
 // How many results per page
 const PAGE_SIZE = 24;
@@ -27,8 +24,8 @@ if (!loadMoreBtn) {
   loadMoreBtn.type = 'button';
   loadMoreBtn.textContent = 'Load more';
   loadMoreBtn.style.display = 'none'; // hidden until we have results
-  // Append after the results grid
-  resultsEl?.parentElement?.appendChild(loadMoreBtn);
+  // Place directly after the results grid
+  resultsEl.insertAdjacentElement('afterend', loadMoreBtn);
 }
 
 /* ========== STATE ========== */
@@ -38,12 +35,12 @@ let isLoading = false;
 
 /* ========== UTILITIES ========== */
 function getApiKey() {
-  // prefer localStorage so you don't commit your key
+  // Prefer localStorage if set via DevTools; otherwise use the embedded default
   const stored = localStorage.getItem('GIPHY_API_KEY');
   return stored || DEFAULT_API_KEY || '';
 }
 
-// Expose a helper so you can run this in DevTools once and not hard-code your key.
+// Helper so you can still set it via DevTools if needed
 window.setApiKey = function setApiKey(key) {
   if (typeof key !== 'string' || !key.trim()) {
     console.warn('setApiKey: please provide a non-empty string.');
@@ -84,7 +81,6 @@ function renderGifs(gifs) {
   const frag = document.createDocumentFragment();
 
   gifs.forEach((gif) => {
-    // Prefer a fixed width rendition for consistent grid sizing
     const imgData =
       gif.images?.fixed_width_downsampled ||
       gif.images?.fixed_width ||
@@ -97,7 +93,7 @@ function renderGifs(gifs) {
     card.className = 'gif-card';
 
     const link = document.createElement('a');
-    link.href = gif.url; // Giphy permalink
+    link.href = gif.url; // GIPHY permalink
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
 
@@ -109,7 +105,6 @@ function renderGifs(gifs) {
 
     link.appendChild(img);
 
-    // Optional caption
     const cap = document.createElement('div');
     cap.className = 'gif-caption';
     cap.textContent = gif.title || 'Untitled';
@@ -125,9 +120,9 @@ function renderGifs(gifs) {
 /* ========== DATA FETCH ========== */
 async function searchGiphy(query, append = false) {
   const apiKey = getApiKey();
-  if (!apiKey) {
-    alert(
-      'No Giphy API key set.\nOpen DevTools and run: setApiKey("YOUR_GIPHY_KEY")\n(You can get one from developers.giphy.com)'
+  if (!apiKey || apiKey === 'YOUR_GIPHY_API_KEY_HERE') {
+    showMessage(
+      'No Giphy API key set. Edit main.js and replace DEFAULT_API_KEY with your key.'
     );
     return;
   }
@@ -146,9 +141,7 @@ async function searchGiphy(query, append = false) {
   try {
     setLoading(true);
     const res = await fetch(endpoint);
-    if (!res.ok) {
-      throw new Error(`HTTP ${res.status}`);
-    }
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const json = await res.json();
 
     const gifs = Array.isArray(json.data) ? json.data : [];
@@ -160,10 +153,9 @@ async function searchGiphy(query, append = false) {
 
     renderGifs(gifs);
 
-    // Pagination controls
+    // Pagination
     const totalCount = json.pagination?.total_count ?? 0;
     const count = json.pagination?.count ?? gifs.length;
-
     offset += count;
 
     if (offset < totalCount && count > 0) {
@@ -186,7 +178,6 @@ form?.addEventListener('submit', (e) => {
   const q = input?.value?.trim();
   if (!q) return;
 
-  // New search
   clearResults();
   currentQuery = q;
   searchGiphy(currentQuery, /* append */ false);
@@ -197,6 +188,5 @@ loadMoreBtn.addEventListener('click', () => {
   searchGiphy(currentQuery, /* append */ true);
 });
 
-/* ========== OPTIONAL: ENTER TO SEARCH ON PAGE LOAD ========== */
-// Focus the search box for convenience
+// Convenience
 input?.focus();
