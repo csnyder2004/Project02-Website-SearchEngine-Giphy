@@ -1,0 +1,282 @@
+/* ===== Project 5 - style.css ===== */
+
+/* CSS Variables & Base */
+:root {
+  --bg: #0f1115;
+  --panel: #171a21;
+  --text: #e6e9ef;
+  --muted: #a7b0be;
+  --accent: #7aa2f7;
+  --accent-2: #9ece6a;
+  --border: #2a2f3a;
+  --radius: 14px;
+  --shadow: 0 8px 28px rgba(0,0,0,0.25);
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  color: var(--text);
+  background: radial-gradient(1200px 600px at 15% -10%, #1b2333 0%, transparent 60%),
+              radial-gradient(1000px 500px at 110% 0%, #1f2537 0%, transparent 60%),
+              var(--bg);
+  line-height: 1.5;
+}
+
+/* Layout wrappers */
+main {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+  padding: 1.25rem 0 3rem;
+}
+
+/* Header: title left, nav right (flex) */
+header {
+  width: min(1100px, 92vw);
+  margin: 1.25rem auto 0;
+  padding: 0.85rem 1rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* (Desktop) title left, nav right */
+  gap: 1rem;
+}
+
+.site-title {
+  margin: 0;
+  font-family: "Orbitron", system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--text);
+  font-size: clamp(1.1rem, 1.5vw + 0.8rem, 1.6rem);
+}
+
+/* Nav */
+nav ul {
+  list-style: none;
+  display: flex;              /* (Desktop) horizontal nav */
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  display: inline-block;
+  padding: 0.55rem 0.85rem;
+  text-decoration: none;
+  color: var(--muted);
+  border: 1px solid transparent;
+  border-radius: 10px;
+  transition: border-color 160ms ease, color 160ms ease, background 160ms ease, transform 120ms ease;
+}
+
+nav a:hover,
+nav a:focus-visible {
+  color: var(--text);
+  border-color: var(--border);
+  background: rgba(255,255,255,0.04);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+/* Search section */
+.search-section {
+  margin-top: 1.25rem;
+  padding: 1rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+#searchForm {
+  display: flex;              /* (Desktop) input + button side by side */
+  align-items: stretch;
+  gap: 0.6rem;
+}
+
+#searchInput {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0.9rem 1rem;
+  background: #0d1016;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  outline: none;
+}
+
+#searchInput::placeholder {
+  color: #7f8796;
+}
+
+#searchInput:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(122,162,247,0.25);
+}
+
+button,
+#loadMoreBtn {
+  appearance: none;
+  padding: 0.9rem 1.1rem;
+  background: linear-gradient(180deg, var(--accent), #5b7de0);
+  color: #0b0e14;
+  font-weight: 700;
+  border: 1px solid #3a57b6;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: filter 140ms ease, transform 120ms ease, box-shadow 140ms ease;
+}
+
+button:hover,
+#loadMoreBtn:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+button:disabled,
+#loadMoreBtn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Results Grid (custom flex grid) */
+.results-grid {
+  margin-top: 1rem;
+  display: flex;          /* custom grid using flexbox */
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  align-items: stretch;
+}
+
+/* Card widths: tweak for your preferred columns */
+.gif-card {
+  background: #10141d;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.22);
+  overflow: hidden;
+  flex: 1 1 calc(25% - 0.9rem);   /* ~4 columns on wide screens */
+  display: flex;
+  flex-direction: column;
+  min-width: 210px;               /* prevents cards from getting too small */
+  max-width: 320px;
+}
+
+.gif-card a {
+  display: block;
+  line-height: 0; /* remove gap under images */
+}
+
+.gif-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gif-caption {
+  padding: 0.6rem 0.75rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border);
+}
+
+/* Notices & messages */
+.notice {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background: #1b2130;
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  color: var(--muted);
+}
+
+/* Load more button container (button is appended after results in JS) */
+#loadMoreBtn {
+  display: inline-block;
+  margin-top: 1rem;
+  background: linear-gradient(180deg, var(--accent-2), #5bca7a);
+  border-color: #3a9b55;
+}
+
+/* Footer */
+footer {
+  width: min(1100px, 92vw);
+  margin: 2rem auto 3rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ===== Responsiveness ===== */
+
+/* Medium screens: tighten grid */
+@media (max-width: 900px) {
+  .gif-card { flex-basis: calc(33.333% - 0.9rem); } /* ~3 columns */
+}
+
+/* Small screens */
+@media (max-width: 640px) {
+  .gif-card { flex-basis: calc(50% - 0.9rem); }     /* ~2 columns */
+}
+
+/* Mobile 320px and below — required behaviors */
+@media (max-width: 320px) {
+  /* 11) Title and navbar stack vertically */
+  header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  /* 12) Nav items stack vertically */
+  nav ul {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  nav a {
+    text-align: center;
+  }
+
+  /* 9) Input + button can wrap to vertical for usability */
+  #searchForm {
+    flex-direction: column;
+  }
+
+  /* 13) Images stack in a single column */
+  .results-grid {
+    gap: 0.75rem;
+  }
+  .gif-card {
+    flex-basis: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+}
+
+/* Accessibility helpers */
+[aria-busy="true"] {
+  position: relative;
+}
+[aria-busy="true"]::after {
+  content: "Loading…";
+  position: absolute;
+  inset: 0;
+  background: rgba(15,17,21,0.6);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}

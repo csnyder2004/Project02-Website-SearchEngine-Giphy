@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project 5 - Search Engine</title>
+
+  <!-- Google Font (choose something new/unique) -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1 class="site-title">My Search Engine</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Docs</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Search Form -->
+  <main>
+    <section class="search-section">
+      <form id="searchForm">
+        <input 
+          type="search" 
+          id="searchInput" 
+          placeholder="Search for GIFs..." 
+          required 
+        />
+        <button type="submit">Search</button>
+      </form>
+    </section>
+
+    <!-- Results Grid -->
+    <section id="results" class="results-grid">
+      <!-- Images will be injected here by main.js -->
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 My Search Engine Project</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="main.js"></script>
+</body>
+</html>
