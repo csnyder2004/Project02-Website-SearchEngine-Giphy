@@ -1,62 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="vols">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project 5 - Search Engine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <title>Tennessee Vols – GIF Search</title>
+  <meta name="description" content="Search Tennessee Volunteers football GIFs and more — Powered by GIPHY." />
+  <!-- Vols orange -->
+  <meta name="theme-color" content="#FF8200" />
 
-  <!-- CSS -->
+  <!-- Social (optional) -->
+  <meta property="og:title" content="Tennessee Vols – GIF Search" />
+  <meta property="og:description" content="Find Tennessee Volunteers football GIFs — Powered by GIPHY." />
+  <meta property="og:type" content="website" />
+
+  <!-- Title font to match your SCSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700&display=swap" rel="stylesheet">
+  <!-- Compiled CSS (generated from your style.scss) -->
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="theme-vols">
+  <!-- Skip link -->
+  <a href="#main" class="sr-only">Skip to main content</a>
+
   <!-- Header -->
   <header>
-    <h1 class="site-title">My Search Engine</h1>
-    <nav>
+    <h1 class="site-title">GIF Search</h1>
+    <nav aria-label="Primary">
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Docs</a></li>
+        <li><a href="#" id="navHome" aria-current="page">Home</a></li>
+        <li><a href="#" id="navDocs">Docs</a></li>
+        <li><a href="#" id="navFavorites">Favorites</a></li>
+        <li><a href="#" id="openSettings" data-open-dialog="settingsDialog">Settings</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Search Form -->
-  <main>
-    <section class="search-section">
-      <form id="searchForm">
-        <input 
-          type="search" 
-          id="searchInput" 
-          placeholder="Search for GIFs..." 
-          required 
+  <!-- No-JS note -->
+  <noscript>
+    <p class="notice">This site needs JavaScript enabled to search GIPHY.</p>
+  </noscript>
+
+  <!-- Main -->
+  <main id="main">
+    <!-- Search -->
+    <section class="search-section" aria-labelledby="searchHead">
+      <h2 id="searchHead" class="sr-only">Search GIFs</h2>
+
+      <!-- Search Form -->
+      <form id="searchForm" role="search" aria-label="GIF search">
+        <label for="searchInput" class="sr-only">Search GIFs</label>
+        <input
+          type="search"
+          id="searchInput"
+          placeholder="Search for GIFs..."
+          required
+          autocomplete="off"
+          enterkeyhint="search"
         />
-        <button type="submit">Search</button>
+        <button type="submit" aria-label="Search">Search</button>
       </form>
+
+      <!-- Quick Actions -->
+      <div class="quick-actions" aria-label="Quick actions">
+        <button type="button" id="btnVols" title="Show Tennessee Volunteers football GIFs">
+          🟧 Vols GIFs
+        </button>
+      </div>
     </section>
 
-    <!-- Optional attribution near results -->
-    <p class="small" style="opacity:.85;margin:0.75rem 0 0;">
-      Powered by <a href="https://giphy.com/" target="_blank" rel="noopener">GIPHY</a>
+    <!-- Required attribution -->
+    <p class="small attribution" style="opacity:.85;margin:0.75rem 0 0;">
+      Powered by <a href="https://giphy.com/" target="_blank" rel="noopener noreferrer">GIPHY</a>
     </p>
 
-    <!-- Results Grid -->
-    <section id="results" class="results-grid" aria-live="polite">
-      <!-- Images will be injected here by main.js -->
+    <!-- Results Toolbar -->
+    <section aria-label="Results toolbar" class="results-toolbar">
+      <p class="small" id="resultCount" aria-live="polite"></p>
+      <div class="sort-group" role="group" aria-label="Sort">
+        <button type="button" id="sortRelevant" aria-pressed="true">Relevance</button>
+        <button type="button" id="sortRecent" aria-pressed="false">Recent</button>
+      </div>
     </section>
+
+    <!-- Results Grid -->
+    <section id="results" class="results-grid" aria-live="polite" aria-busy="false">
+      <!-- Cards injected by JS -->
+    </section>
+
+    <!-- Optional: Load More button created by JS after results -->
+    <!-- <button id="loadMoreBtn" type="button" aria-label="Load more search results" style="display:none">Load more</button> -->
   </main>
+
+  <!-- Favorites Drawer -->
+  <aside id="favoritesDrawer" aria-hidden="true" aria-labelledby="favTitle">
+    <h2 id="favTitle">Favorites</h2>
+    <p class="small">Save GIFs to revisit later.</p>
+    <ul id="favList" aria-live="polite"></ul>
+    <button type="button" id="closeFavs" aria-label="Close favorites">Close</button>
+  </aside>
+
+  <!-- Templates (cloned by JS) -->
+  <template id="gif-card-template">
+    <article class="gif-card">
+      <a href="#" target="_blank" rel="noopener noreferrer">
+        <img alt="" loading="lazy" decoding="async" />
+      </a>
+      <div class="gif-caption"></div>
+      <button type="button" class="fav-toggle" aria-label="Save to favorites">★</button>
+    </article>
+  </template>
+
+  <template id="skeleton-card-template">
+    <article class="gif-card" aria-hidden="true">
+      <div class="skeleton" style="height: 180px;"></div>
+      <div class="skeleton" style="height: 16px; margin: 8px;"></div>
+    </article>
+  </template>
+
+  <!-- Settings Modal -->
+  <dialog id="settingsDialog" aria-labelledby="settingsTitle">
+    <form method="dialog">
+      <h2 id="settingsTitle">Settings</h2>
+      <p class="small">Enter your GIPHY API key (optional—only needed if you don’t embed it).</p>
+
+      <label for="apiKeyInput">API Key</label>
+      <input id="apiKeyInput" type="text" placeholder="GIPHY API Key" autocomplete="off" />
+
+      <menu>
+        <button value="cancel">Cancel</button>
+        <button id="saveApiKey" value="default">Save</button>
+      </menu>
+    </form>
+  </dialog>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 My Search Engine Project • Powered by 
-      <a href="https://giphy.com/" target="_blank" rel="noopener">GIPHY</a>
+    <p>&copy; 2025 Vols GIF Search • Powered by
+      <a href="https://giphy.com/" target="_blank" rel="noopener noreferrer">GIPHY</a>
     </p>
   </footer>
 
-  <!-- JavaScript -->
+  <!-- App script (you’ll paste the updated JS next) -->
   <script src="main.js"></script>
 </body>
 </html>

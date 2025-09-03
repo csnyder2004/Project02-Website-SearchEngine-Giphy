@@ -1,0 +1,285 @@
+/* ===== Project 5 — style.scss (Aurora Glass theme, Dart Sass 3.0-safe) ===== */
+
+/* Use modern Sass modules */
+@use "sass:color";
+@use "sass:map";
+
+/* ---------- Settings ---------- */
+$bg: #0b1020;
+$bg-2: #0f1430;
+$text: #eaf0ff;
+$muted: #aab3c5;
+$accent: #9d7bff;   // purple
+$accent2: #47e6b1;  // teal
+$panel: rgba(255, 255, 255, 0.06);
+$border: rgba(255, 255, 255, 0.12);
+$radius: 16px;
+$shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+
+$breakpoints: (
+  md: 900px,
+  sm: 640px,
+  xs: 320px
+);
+
+/* ---------- Mixins & helpers (module-safe) ---------- */
+@mixin mq($bp) {
+  @media (max-width: map.get($breakpoints, $bp)) { @content; }
+}
+
+/* Convert any color to the same color with custom alpha */
+@function alpha($c, $a) {
+  @return color.change($c, $alpha: $a);
+}
+
+@mixin glass($blur: 14px) {
+  background: $panel;
+  backdrop-filter: blur($blur) saturate(140%);
+  -webkit-backdrop-filter: blur($blur) saturate(140%);
+  border: 1px solid $border;
+  box-shadow: $shadow;
+}
+
+@mixin button-grad($c1, $c2) {
+  background: linear-gradient(180deg, $c1, $c2);
+  color: #0a0d14;
+  font-weight: 700;
+  border: 1px solid alpha($c1, .55);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 120ms ease, filter 150ms ease, box-shadow 150ms ease;
+  &:hover { transform: translateY(-1px); filter: brightness(1.06); }
+  &:disabled { opacity: .65; cursor: not-allowed; transform: none; }
+}
+
+@mixin focus-ring($c) {
+  outline: none;
+  box-shadow: 0 0 0 3px alpha($c, .35);
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  color: $text;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 12% -10%, alpha(#5b8cff, .18) 0%, transparent 60%),
+    radial-gradient(1000px 500px at 120% 0%, alpha(#47e6b1, .20) 0%, transparent 60%),
+    linear-gradient(180deg, $bg, $bg-2 70%);
+  line-height: 1.55;
+
+  // soft moving glow
+  &::before {
+    content: "";
+    position: fixed;
+    inset: -20% -10% auto -10%;
+    height: 60vh;
+    background: radial-gradient(closest-side, alpha(#8a7bff,.28), transparent 70%);
+    filter: blur(40px);
+    animation: float 14s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+}
+
+@keyframes float {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(8%, 4%, 0) scale(1.06); }
+}
+
+main {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+  padding: 1.25rem 0 3rem;
+}
+
+/* ---------- Header ---------- */
+header {
+  width: min(1100px, 92vw);
+  margin: 1.25rem auto 0;
+  padding: .85rem 1rem;
+  @include glass(16px);
+  border-radius: $radius;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  .site-title {
+    margin: 0;
+    font-family: "Syne", system-ui, sans-serif; // creative display font for title
+    font-weight: 700;
+    letter-spacing: .4px;
+    font-size: clamp(1.15rem, 1.5vw + .9rem, 1.8rem);
+    text-shadow: 0 1px 0 alpha(#000, .4);
+  }
+
+  nav {
+    ul {
+      margin: 0; padding: 0; list-style: none;
+      display: flex; gap: 1rem;
+    }
+    a {
+      display: inline-block;
+      padding: .55rem .85rem;
+      text-decoration: none;
+      color: $muted;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      transition: border-color 160ms, color 160ms, background 160ms, transform 120ms;
+      &:hover, &:focus-visible {
+        color: $text;
+        border-color: $border;
+        background: alpha(#fff, .05);
+        transform: translateY(-1px);
+      }
+    }
+  }
+
+  @include mq(xs) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: .5rem;
+
+    nav ul {
+      flex-direction: column;
+      gap: .5rem;
+      a { text-align: center; }
+    }
+  }
+}
+
+/* ---------- Search ---------- */
+.search-section {
+  margin-top: 1.25rem;
+  padding: 1rem;
+  @include glass(18px);
+  border-radius: $radius;
+
+  #searchForm {
+    display: flex;
+    align-items: stretch;
+    gap: .6rem;
+
+    #searchInput {
+      flex: 1 1 auto; min-width: 0;
+      padding: .95rem 1rem;
+      background: alpha(#0d1016, .9);
+      color: $text;
+      border: 1px solid $border;
+      border-radius: 12px;
+      &::placeholder { color: #7f8796; }
+      &:focus-visible { @include focus-ring($accent); border-color: alpha($accent,.8); }
+    }
+
+    button {
+      padding: .95rem 1.1rem;
+      @include button-grad($accent, #5b7de0);
+    }
+
+    @include mq(xs) {
+      flex-direction: column;
+    }
+  }
+}
+
+.attribution, .small {
+  margin: .75rem 0 0;
+  opacity: .9;
+  a { color: $accent2; text-decoration: none;
+      &:hover { text-decoration: underline; } }
+}
+
+/* ---------- Results (custom flex grid) ---------- */
+.results-grid {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .9rem;
+  align-items: stretch;
+}
+
+.gif-card {
+  @include glass(18px);
+  border-radius: 14px;
+  overflow: hidden;
+  flex: 1 1 calc(25% - .9rem); // ~4 columns on wide screens
+  min-width: 210px;
+  max-width: 320px;
+  transform: translateZ(0);
+  transition: transform 140ms ease, box-shadow 160ms ease, border-color 160ms ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 32px alpha(#000, .45);
+    border-color: alpha($accent, .35);
+  }
+
+  a { display: block; line-height: 0; }
+  img { width: 100%; height: auto; display: block; }
+
+  .gif-caption {
+    padding: .6rem .75rem;
+    color: $muted;
+    font-size: .92rem;
+    border-top: 1px solid $border;
+  }
+}
+
+.notice {
+  width: 100%;
+  padding: .9rem 1rem;
+  background: alpha(#1b2130, .9);
+  border: 1px dashed $border;
+  border-radius: 10px;
+  color: $muted;
+}
+
+/* Load more */
+#loadMoreBtn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: .9rem 1.1rem;
+  @include button-grad($accent2, #5bca7a);
+  border-color: alpha(#3a9b55, .8);
+}
+
+/* ---------- Footer ---------- */
+footer {
+  width: min(1100px, 92vw);
+  margin: 2rem auto 3rem;
+  color: $muted;
+  text-align: center;
+}
+
+/* ---------- Responsive tweaks ---------- */
+@include mq(md) {
+  .gif-card { flex-basis: calc(33.333% - .9rem); } // 3 columns
+}
+@include mq(sm) {
+  .gif-card { flex-basis: calc(50% - .9rem); }     // 2 columns
+}
+@include mq(xs) {
+  .results-grid { gap: .75rem; }
+  .gif-card { flex-basis: 100%; min-width: 0; max-width: 100%; }  // 1 column at 320px
+}
+
+/* Accessibility */
+[aria-busy="true"] {
+  position: relative;
+  &::after {
+    content: "Loading…";
+    position: absolute;
+    inset: 0;
+    background: alpha(#0f1115, .6);
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    letter-spacing: .4px;
+  }
+}
