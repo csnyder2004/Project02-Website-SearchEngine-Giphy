@@ -1,5 +1,4 @@
 /* ===== Vols GIF Search - main.js =====
-   - No rating / language params
    - Search + "Vols" quick action
    - Sort (relevance | recent)
    - Skeleton loaders + pagination
@@ -9,9 +8,8 @@
 ====================================== */
 
 /* ========== CONFIG ========== */
-// Option A: embed your key here for public demo (GitHub Pages)
-const DEFAULT_API_KEY = ''; // e.g., 'YOUR_GIPHY_API_KEY_HERE'
-// Option B: add via Settings dialog or DevTools: setApiKey('...')
+
+const DEFAULT_API_KEY = 'uUe03wef0NF4O2AYn9ZS8eZbGanXydbN'; 
 
 const DEFAULT_LIMIT = 24;
 
