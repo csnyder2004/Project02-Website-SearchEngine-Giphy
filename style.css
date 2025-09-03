@@ -2,7 +2,6 @@
    Vols Dark Theme — style.css
    Creative dark UI with Tennessee orange accents,
    checkerboard motifs, and glassy cards.
-   Drop in alongside your index.html.
 ============================= */
 
 /* ---------- CSS Variables ---------- */
@@ -20,7 +19,6 @@
   --shadow: 0 10px 30px rgba(0,0,0,0.45);
 }
 
-/* Optional hook if you keep <body class="theme-vols"> */
 .theme-vols {
   --accent: var(--vols-orange);
 }
