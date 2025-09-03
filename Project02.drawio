@@ -1,0 +1,88 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36" version="28.0.7">
+  <diagram id="tzgb74HGAMuiFL5wBehH" name="Page-1">
+    <mxGraphModel dx="3357" dy="1693" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-16" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-368" y="-252" width="980" height="838" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-1" value="Desktop - Home Search" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-25" y="-177" width="517" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-2" value="Header: Site Title (left) // Nav (right)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-337" y="-82" width="395" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-3" value="&lt;b&gt;Search Bar: [ Input (type=search) ]&amp;nbsp;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-340" y="-7" width="398" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-5" value="Gif" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-329" y="104" width="186" height="151" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-8" value="Gif" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-108" y="104" width="186" height="151" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-9" value="Gif" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="113" y="104" width="186" height="151" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-10" value="Gif" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="334" y="104" width="186" height="151" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-11" value="Gif" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-331" y="278" width="186" height="151" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-12" value="Gif" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-108" y="278" width="186" height="151" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-13" value="Gif" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="115" y="280" width="186" height="151" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-14" value="Gif" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="334" y="284" width="186" height="151" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-15" value="... Powered by Giphy" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-329" y="481" width="399" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-17" value="Load More" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="116" y="459" width="216" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-18" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1004" y="-252" width="468" height="846" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-19" value="Mobile" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-824" y="-372" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-20" value="Desktop" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="56" y="-382" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-21" value="Mobile - Home Search" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1001" y="-245" width="465" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-22" value="Header: Site Title&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-966" y="-163" width="395" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-23" value="Nav (Stacked" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-969" y="-88" width="399" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-25" value="&lt;b&gt;Search Bar: [ Input (type=search) ]&amp;nbsp;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-969" y="-7" width="398" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-26" value="Submit Button" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-969" y="69" width="398" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-27" value="Gif" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-867" y="152" width="186" height="151" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-28" value="Gif" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-862.5" y="330" width="186" height="151" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-29" value="... Powered by Giphy" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-970" y="522" width="399" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1NVGdzQ4uj4N4KdJ0gVp-30" value="Load More" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-887" y="481" width="216" height="36" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
