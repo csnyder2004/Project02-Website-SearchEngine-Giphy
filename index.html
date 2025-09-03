@@ -126,12 +126,13 @@
       <label for="apiKeyInput">API Key</label>
       <input id="apiKeyInput" type="text" placeholder="GIPHY API Key" autocomplete="off" />
 
-      <menu>
-        <button value="cancel">Cancel</button>
-        <button id="saveApiKey" value="default">Save</button>
-      </menu>
+      <div class="dialog-actions" role="group" aria-label="Dialog actions">
+        <button type="submit" value="cancel" id="cancelSettings">Cancel</button>
+        <button type="submit" id="saveApiKey" value="default">Save</button>
+      </div>
     </form>
   </dialog>
+
 
   <!-- Footer -->
   <footer>

@@ -304,7 +304,8 @@ dialog input{
   padding:.7rem .9rem; border-radius:10px; border:1px solid var(--border);
   background:#0d131e; color:var(--text);
 }
-dialog menu{ display:flex; gap:.5rem; justify-content:flex-end; padding:0; margin:.5rem 0 0; }
+dialog .dialog-actions { display:flex; gap:.5rem; justify-content:flex-end; padding:0; margin:.5rem 0 0; }
+
 dialog button{
   padding:.55rem .85rem; border-radius:10px; cursor:pointer;
   border:1px solid var(--border); background:rgba(255,255,255,.06); color:#fff;
